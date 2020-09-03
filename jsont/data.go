@@ -1,4 +1,4 @@
-package json
+package jsont
 
 /*
    Small paylod, http log like structure. Size: 190 bytes

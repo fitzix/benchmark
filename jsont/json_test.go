@@ -1,42 +1,40 @@
-package iterator
+package jsont
 
 import (
+	"encoding/json"
 	"testing"
-
-	data "github.com/fitzix/benchmark/json"
-	jsoniter "github.com/json-iterator/go"
 )
 
-var json = jsoniter.ConfigCompatibleWithStandardLibrary
+// var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 func BenchmarkDecodeSmall(b *testing.B) {
 	b.ReportAllocs()
-	var d data.SmallPayload
+	var d SmallPayload
 	for i := 0; i < b.N; i++ {
-		_ = json.Unmarshal(data.SmallFixture, &d)
+		_ = json.Unmarshal(SmallFixture, &d)
 	}
 }
 
 func BenchmarkEncodeSmall(b *testing.B) {
-	var d data.SmallPayload
-	_ = json.Unmarshal(data.SmallFixture, &d)
+	var d SmallPayload
+	_ = json.Unmarshal(SmallFixture, &d)
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		_, _ = json.Marshal(d)
 	}
 }
 
-func BenchmarkStdDecodeMedium(b *testing.B) {
+func BenchmarkDecodeMedium(b *testing.B) {
 	b.ReportAllocs()
-	var d data.MediumPayload
+	var d MediumPayload
 	for i := 0; i < b.N; i++ {
-		_ = json.Unmarshal(data.MediumFixture, &d)
+		_ = json.Unmarshal(MediumFixture, &d)
 	}
 }
 
 func BenchmarkEncodeMedium(b *testing.B) {
-	var d data.MediumPayload
-	_ = json.Unmarshal(data.MediumFixture, &d)
+	var d MediumPayload
+	_ = json.Unmarshal(MediumFixture, &d)
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		_, _ = json.Marshal(d)
@@ -45,15 +43,15 @@ func BenchmarkEncodeMedium(b *testing.B) {
 
 func BenchmarkDecodeLarge(b *testing.B) {
 	b.ReportAllocs()
-	var d data.LargePayload
+	var d LargePayload
 	for i := 0; i < b.N; i++ {
-		_ = json.Unmarshal(data.LargeFixture, &d)
+		_ = json.Unmarshal(LargeFixture, &d)
 	}
 }
 
 func BenchmarkEncodeLarge(b *testing.B) {
-	var d data.LargePayload
-	_ = json.Unmarshal(data.LargeFixture, &d)
+	var d LargePayload
+	_ = json.Unmarshal(LargeFixture, &d)
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		_, _ = json.Marshal(d)
